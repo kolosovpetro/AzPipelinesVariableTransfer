@@ -1,0 +1,32 @@
+trigger:
+  - master
+
+variables:
+  - name: 'System.Debug'
+    value: 'true'
+
+stages:
+  - stage: 'Set_variable_stage'
+    displayName: 'Set_variable_stage'
+    jobs:
+      - job: 'Set_variable_job'
+        displayName: 'Set_variable_job'
+        pool:
+          vmImage: windows-latest
+
+        steps:
+          - powershell: |
+              $MY_VARIABLE="this is my variable"
+              Write-Host "##vso[task.setvariable variable=GLOBAL_VAR;isOutput=true]$MY_VARIABLE"
+            name: SetVariableStep
+
+      - job: 'Get_variable_job'
+        displayName: 'Get_variable_job'
+        pool:
+          vmImage: windows-latest
+        variables:
+          GetVariableFromStage: $[ dependencies.Set_variable_job.outputs['SetVariableStep.GLOBAL_VAR'] ]
+
+        steps:
+          - powershell: |
+              Write-Host $(GetVariableFromStage)
