@@ -22,7 +22,7 @@ stages:
 
       - job: 'Get_variable_job'
         displayName: 'Get_variable_job'
-        depends_on: Set_variable_job
+        dependsOn: Set_variable_job
         pool:
           vmImage: ubuntu-latest
         variables:
