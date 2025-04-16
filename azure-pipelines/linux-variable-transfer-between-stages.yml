@@ -20,6 +20,10 @@ stages:
               echo "##vso[task.setvariable variable=GLOBAL_VAR;isOutput=true]$MY_VARIABLE"
             name: SetVariableStep
 
+          - bash: |
+              echo $MY_VARIABLE
+            displayName: 'Variable from step'
+
   - stage: 'Get_variable_stage'
     displayName: 'Get_variable_stage'
     dependsOn: 'Set_variable_stage'
