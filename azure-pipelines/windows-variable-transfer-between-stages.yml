@@ -16,7 +16,7 @@ stages:
 
         steps:
           - powershell: |
-              MY_VARIABLE="this is my variable"
+              $MY_VARIABLE="this is my variable"
               Write-Host "##vso[task.setvariable variable=GLOBAL_VAR;isOutput=true]$MY_VARIABLE"
             name: SetVariableStep
 
