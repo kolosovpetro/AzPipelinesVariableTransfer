@@ -21,7 +21,7 @@ stages:
             name: SetVariableStep
 
           - bash: |
-              echo $(MY_VARIABLE)
+              echo $(GLOBAL_VAR)
             displayName: 'Variable from step'
 
   - stage: 'Get_variable_stage'
