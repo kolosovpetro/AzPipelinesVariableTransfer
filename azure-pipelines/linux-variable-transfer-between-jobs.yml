@@ -26,7 +26,7 @@ stages:
         pool:
           vmImage: ubuntu-latest
         variables:
-          GetVariableFromStage: $[ stageDependencies.Set_variable_stage.Set_variable_job.outputs['SetVariableStep.GLOBAL_VAR'] ]
+          GetVariableFromStage: $[ dependencies.Set_variable_job.outputs['SetVariableStep.GLOBAL_VAR'] ]
 
         steps:
           - bash: |
